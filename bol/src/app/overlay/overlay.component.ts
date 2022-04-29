@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-declare function enableLoadingScreen() : any;
-
 @Component({
   selector: 'app-overlay',
   templateUrl: './overlay.component.html',
@@ -12,10 +9,17 @@ export class OverlayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.enableLoadingScreen();
   }
 
-  onLoad(){
-    enableLoadingScreen();
+  enableLoadingScreen() {
+    var loadingScreenDiv = document.getElementById("loading-screen");
+    if (loadingScreenDiv?.style.display !== 'none') {
+      loadingScreenDiv!.style.display = 'none';
+    }
+    else {
+      loadingScreenDiv.style.display = 'block';
+    }
   }
 
 }
