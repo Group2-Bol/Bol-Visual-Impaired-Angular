@@ -14,21 +14,36 @@
     </div>
 
     <div class="modal fade" id="searchModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalLabel">Upload een foto</h5>
+                    <h3 class="modal-title" id="searchModalLabel"><b>Maak een keuze</b></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <input type="file" name="itemImage" accept="images/* " />
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" onclick="enableLoadingScreen()" data-bs-dismiss="modal">Bevestigen</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-dark mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal" data-bs-toggle="modal">Foto Uploaden</button>
+                  <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Tekst naar Spraak</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="imageModalLabel"><b>Upload een foto</b></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="file" name="itemImage" accept="images/* " />
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-success mr-auto" onclick="enableLoadingScreen()" data-bs-dismiss="modal">Bevestigen</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Anuleren</button>
+        </div>
+        </div>
+      </div>
     </div>
 
     <div id="loading-screen">
