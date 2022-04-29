@@ -1,0 +1,65 @@
+.background{
+  font-family: graphik,arial,helvetica,sans-serif;
+  background-color: #0000a4 !important;
+  padding: 2vh;
+}
+
+.col-12 input{
+  width: 40vw;
+}
+
+.logo{
+  width: 15vw;
+  float: left;
+  margin-left: 28vw;
+}
+
+.home-btn{
+  width: 10vw;
+}
+
+.search-bar{
+  border-radius: 1.5rem !important;
+  height: 13vh;
+}
+
+.btn{
+  font-weight: bold !important;
+  font-size: 1.3rem !important;
+}
+
+.search-btn{
+  width: 80vw;
+  float: left;
+  margin-left: 5vw;
+  margin-top: 8vh;
+}
+
+.container .search-btn{
+  border: 3px solid black !important;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spin::before{
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}

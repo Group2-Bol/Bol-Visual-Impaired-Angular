@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JstestComponent } from './jstest/jstest.component';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JstestComponent
+    JstestComponent,
+    OverlayComponent
   ],
   imports: [
     BrowserModule,
