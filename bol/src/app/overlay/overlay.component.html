@@ -10,14 +10,14 @@
         </div>
     </header>
     <div class="container">
-        <button class="search-btn btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">Zoeken...</button>
+        <button class="search-btn btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#chooseModal">Zoeken...</button>
     </div>
 
-    <div class="modal fade" id="searchModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal fade" id="chooseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="chooseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="searchModalLabel"><b>Maak een keuze</b></h3>
+                    <h3 class="modal-title" id="chooseModalLabel"><b>Maak een keuze</b></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -40,7 +40,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-success mr-auto" onclick="enableLoadingScreen()" data-bs-dismiss="modal">Bevestigen</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Anuleren</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#chooseModal">Anuleren</button>
         </div>
         </div>
       </div>
