@@ -48,7 +48,7 @@
           <!-- <input type="file" name="itemImage" accept="image/*" /> -->
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-success mr-auto" onclick="enableLoadingScreen()"
+          <button type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
             data-bs-dismiss="modal">Bevestigen</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
             data-bs-target="#chooseModal">Anuleren</button>
@@ -57,7 +57,12 @@
     </div>
   </div>
 
-  <div id="loading-screen">
-    <div class="spin"></div>
+  <div id="loading-screen" class="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </body>
