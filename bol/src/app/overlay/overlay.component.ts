@@ -9,7 +9,7 @@ export class OverlayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //this.enableLoadingScreen();
+    this.toggleLoadingScreen();
   }
 
   toggleLoadingScreen() {
