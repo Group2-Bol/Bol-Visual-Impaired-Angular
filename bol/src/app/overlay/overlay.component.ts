@@ -9,16 +9,16 @@ export class OverlayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.enableLoadingScreen();
+    this.toggleLoadingScreen();
   }
 
-  enableLoadingScreen() {
+  toggleLoadingScreen() {
     var loadingScreenDiv = document.getElementById("loading-screen");
-    if (loadingScreenDiv?.style.display !== 'none') {
-      loadingScreenDiv!.style.display = 'none';
+    if(loadingScreenDiv?.style.display == 'none') {
+      loadingScreenDiv.style.display = "flex";
     }
     else {
-      loadingScreenDiv.style.display = 'block';
+      loadingScreenDiv!.style.display = "none";
     }
   }
 

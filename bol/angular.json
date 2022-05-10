@@ -32,8 +32,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
-              "src/assets/js/custom.js",
-              "src/assets/js/overlay.js"
+              "src/assets/js/custom.js"
             ]
           },
           "configurations": {
