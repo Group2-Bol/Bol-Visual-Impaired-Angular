@@ -40,19 +40,24 @@
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" [formGroup]="fileGroup" novalidate>
             <div class="custom-file">
-              <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/*"/>
+              <input class="form-control form-control-lg" id="formFileLg" formControlName="formFileLg" type="file"
+                accept="image/*" />
+              <div class="invalid-feedback">
+                Ontbrekende Foto!
+              </div>
             </div>
           </form>
-          <!-- <input type="file" name="itemImage" accept="image/*" /> -->
         </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
-            data-bs-dismiss="modal">Bevestigen</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-            data-bs-target="#chooseModal">Anuleren</button>
-        </div>
+        <form [formGroup]="fileGroup">
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
+              data-bs-dismiss="modal" [disabled]="fileGroup.invalid">Bevestigen</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+              data-bs-target="#chooseModal">Anuleren</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
