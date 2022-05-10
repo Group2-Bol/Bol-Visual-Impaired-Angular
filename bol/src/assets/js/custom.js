@@ -15,15 +15,15 @@ function setup() {
   // Start classifying
 }
 
-function draw() {
-  background(0);
+// function draw() {
+//   background(0);
 
-  // Draw the label
-  fill(255);
-  textSize(16);
-  textAlign(CENTER);
-  text(label, width / 2, height - 4);
-}
+//   // Draw the label
+//   fill(255);
+//   textSize(16);
+//   textAlign(CENTER);
+//   text(label, width / 2, height - 4);
+// }
 
 function classifyImage() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');

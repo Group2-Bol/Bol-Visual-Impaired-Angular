@@ -40,9 +40,10 @@
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
-          <form class="needs-validation" [formGroup]="fileGroup" novalidate>
+          <form class="needs-validation" [formGroup]="uploadForm" novalidate>
             <div class="custom-file">
-              <input class="form-control form-control-lg" id="formFileLg" formControlName="formFileLg" type="file"
+              <input class="form-control" id="file" formControlName="name" type="text" />
+              <input class="form-control form-control-lg" id="formFileLg" formControlName="file" (change)="onImageChange($event)" type="file"
                 accept="image/*" />
               <div class="invalid-feedback">
                 Ontbrekende Foto!
@@ -50,10 +51,10 @@
             </div>
           </form>
         </div>
-        <form [formGroup]="fileGroup">
+        <form [formGroup]="uploadForm">
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
-              data-bs-dismiss="modal" [disabled]="fileGroup.invalid">Bevestigen</button>
+              data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
               data-bs-target="#chooseModal">Anuleren</button>
           </div>
