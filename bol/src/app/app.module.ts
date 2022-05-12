@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ImgEnhancementComponent } from './img-enhancement/img-enhancement.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ImgEnhancementComponent
   ],
   imports: [
     BrowserModule,
