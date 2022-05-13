@@ -26,19 +26,14 @@ export class OverlayComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
 	ngOnInit(): void {
-		// this.formFileLg = new FormControl(null, Validators.required)
-		// this.imgSrc = new FormControl('', null)
 
-		this.toggleLoadingScreen();
+    this.toggleLoadingScreen();
 
-		// this.fileGroup = this.formBuilder.group({
-		//   'formFileLg': this.formFileLg,
-		//   'imgSrc': this.imgSrc
-		// })
 	}
 
 	toggleLoadingScreen() {
 		var loadingScreenDiv = document.getElementById("loading-screen");
+
 		if (loadingScreenDiv?.style.display == 'none') {
 			loadingScreenDiv.style.display = "flex";
 			this.upload();

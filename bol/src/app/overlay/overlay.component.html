@@ -42,7 +42,6 @@
         <div class="modal-body">
           <form class="needs-validation" [formGroup]="uploadForm" novalidate>
             <div class="custom-file">
-              <input class="form-control" id="file" formControlName="name" type="text" />
               <input class="form-control form-control-lg" id="formFileLg" formControlName="file"
                 (change)="onImageChange($event)" type="file" accept="image/*" />
               <div class="invalid-feedback">
