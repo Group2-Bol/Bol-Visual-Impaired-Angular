@@ -9,13 +9,11 @@ let img;
 // Load de model and image first 
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-  img = loadImage('./assets/images/test4.jpg');
+  img = loadImage('./assets/images/ml5.jpg');
 }
 
 function setup() {
-  createCanvas(400, 400);
   classifier.classify(img, gotResult);
-  image(img, 0, 0);
 }
 
 // A function to run when we get any errors and the results
@@ -25,8 +23,7 @@ function gotResult(error, results) {
     console.error(error);
   } else {
     // The results are in an array ordered by confidence.
-    console.log(results);
-    createDiv(`Label: ${results[0].label}`);
-    createDiv(`Confidence: ${nf(results[0].confidence, 0, 2)}`);
+    console.log(results[0]);
+    return results[0].label;
   }
 }
