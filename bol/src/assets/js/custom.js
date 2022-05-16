@@ -3,57 +3,30 @@ let classifier;
 // Model URL
 let imageModelURL = './assets/custom/';
 
-// Video
-let video;
-let flippedVideo;
-// To store the classification
-let label = "";
+// A variable to hold the image we want to classify
+let img;
 
-// Load the model first
+// Load de model and image first 
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  img = loadImage('./assets/images/test4.jpg');
 }
 
 function setup() {
-  createCanvas(320, 260);
-  // Create the video
-  video = createCapture(VIDEO);
-  video.size(320, 240);
-  video.hide();
-
-  flippedVideo = ml5.flipImage(video)
-  // Start classifying
-  classifyVideo();
+  createCanvas(400, 400);
+  classifier.classify(img, gotResult);
+  image(img, 0, 0);
 }
 
-function draw() {
-  background(0);
-  // Draw the video
-  image(flippedVideo, 0, 0);
-
-  // Draw the label
-  fill(255);
-  textSize(16);
-  textAlign(CENTER);
-  text(label, width / 2, height - 4);
-}
-
-// Get a prediction for the current video frame
-function classifyVideo() {
-  flippedVideo = ml5.flipImage(video)
-  classifier.classify(flippedVideo, gotResult);
-}
-
-// When we get a result
+// A function to run when we get any errors and the results
 function gotResult(error, results) {
-  // If there is an error
+  // Display error in the console
   if (error) {
     console.error(error);
-    return;
+  } else {
+    // The results are in an array ordered by confidence.
+    console.log(results);
+    createDiv(`Label: ${results[0].label}`);
+    createDiv(`Confidence: ${nf(results[0].confidence, 0, 2)}`);
   }
-  // The results are in an array ordered by confidence.
-  console.log(results[0]);
-  label = results[0].label;
-  // Classifiy again!
-  classifyVideo();
 }
