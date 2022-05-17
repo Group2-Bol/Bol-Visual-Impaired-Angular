@@ -60,6 +60,8 @@ export class OverlayComponent implements OnInit {
 			.subscribe(res => {
 				console.log(res);
 			})
+
+      classifyImage();
 	}
 
 	delete() {

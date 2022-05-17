@@ -27,8 +27,7 @@ function setup() {
 
 function classifyImage() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-	classifier.classify(document.getElementById("formFileLg").value);
-  console.log(document.getElementById("formFileLg").value);
+	classifier.classify('./assets/images/ml5.png');
 }
 
 // When we get a result
