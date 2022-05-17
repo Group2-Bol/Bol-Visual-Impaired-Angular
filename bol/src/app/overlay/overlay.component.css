@@ -8,6 +8,7 @@
   width: 40vw;
 }
 
+
 .logo{
   width: 15vw;
   float: left;
@@ -37,6 +38,13 @@
 
 .container .search-btn{
   border: 3px solid black !important;
+}
+
+.enhancedImages{
+  margin: 185px 185px;
+  top:0px;
+  left:0px;
+  align-items: center;
 }
 
 .loader{

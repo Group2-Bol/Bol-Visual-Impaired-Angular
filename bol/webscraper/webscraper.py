@@ -26,10 +26,14 @@ def getMenus():
 
     for menu in subMenus:
         menuText = menu.get_attribute("innerHTML") 
-        if "Alles" in menuText or "Sieraden" in menuText or "Accessoires" in menuText:
-            pass
-        else:
+        if "Pyjama's" in menuText or "Kleding" in menuText or "Grote maten" in menuText:
             linksToSubMenus.append(menu.get_attribute('href'))
+        else:
+            pass
+        # if "Alles" in menuText or "Sieraden" in menuText or "Accessoires" in menuText:
+        #     pass
+        # else:
+        #     linksToSubMenus.append(menu.get_attribute('href'))
     
     navigateWebsite(linksToSubMenus)
 

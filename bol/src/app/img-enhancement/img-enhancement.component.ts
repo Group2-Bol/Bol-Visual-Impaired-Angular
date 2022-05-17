@@ -11,7 +11,7 @@ export class ImgEnhancementComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loadImages()
+    //this.loadImages()
   }
 
   loadImages() {
