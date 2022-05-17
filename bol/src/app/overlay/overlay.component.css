@@ -39,6 +39,10 @@
   border: 3px solid black !important;
 }
 
+#tosModalBody{
+  font-size: 25px;
+}
+
 .loader{
   position: absolute;
   top: 50%;
@@ -47,6 +51,7 @@
   align-items: center;
   display: none;
 }
+
 /* Creating the dots */
 span{
   height: 25px;

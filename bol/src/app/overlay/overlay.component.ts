@@ -15,8 +15,6 @@ export class OverlayComponent implements OnInit {
 	@ViewChild('content') content : any;
 
 	fileGroup!: FormGroup;
-	// formFileLg!: FormControl;
-	// imgSrc!: FormControl;
 
 	uploadForm = new FormGroup({
 		name: new FormControl('', null),
