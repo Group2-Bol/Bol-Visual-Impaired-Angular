@@ -73,8 +73,8 @@ export class OverlayComponent implements OnInit {
 		var synth = window.speechSynthesis;
 		var utterThis = new SpeechSynthesisUtterance(text);
 		utterThis.lang = 'nl';
+		utterThis.rate = 1.7;
 		synth.speak(utterThis);
-	  
 	  
 	  }
 }
