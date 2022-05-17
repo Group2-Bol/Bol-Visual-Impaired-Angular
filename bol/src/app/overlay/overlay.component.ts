@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-declare function classifyImage(): any;
+declare function preload(): any;
+declare function setup(): any;
 
 @Component({
 	selector: 'app-overlay',
@@ -10,6 +11,8 @@ declare function classifyImage(): any;
 	styleUrls: ['./overlay.component.css']
 })
 export class OverlayComponent implements OnInit {
+
+	@ViewChild('content') content : any;
 
 	fileGroup!: FormGroup;
 	// formFileLg!: FormControl;
@@ -28,7 +31,18 @@ export class OverlayComponent implements OnInit {
 	ngOnInit(): void {
 
     this.toggleLoadingScreen();
+	this.openPopup();
 
+	}
+
+	displayStyle = "none";
+
+	openPopup() {
+		this.displayStyle = "block";
+	}
+
+	closePopup() {
+		this.displayStyle = "none";
 	}
 
 	toggleLoadingScreen() {
@@ -60,6 +74,19 @@ export class OverlayComponent implements OnInit {
 			.subscribe(res => {
 				console.log(res);
 			})
+
+		/* Sets a delay between uploading the image and selecting it in the ml5 model.
+		* This is so that the PHP script has some time to actualy upload the image to the
+		* designated folder.	
+		*/
+		setTimeout(
+			() => {
+				console.log("Running...")
+				preload();
+				setup();
+			},
+			2000
+		) 
 	}
 
 	delete() {
