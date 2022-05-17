@@ -2,14 +2,14 @@
   <header class="background text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <button type="button" class="home-btn btn btn-light">Terug</button>
+        <button (mouseover)="textToSpeech('Terug')" type="button" class="home-btn btn btn-light">Terug</button>
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
           <img class="logo" src="../../assets/images/bol-logo.png">
         </a>
       </div>
     </div>
   </header>
-  <div class="container">
+  <div (mouseover)="textToSpeech('Zoeken')" class="container" >
     <button class="search-btn btn btn-outline-dark" data-bs-toggle="modal"
       data-bs-target="#chooseModal">Zoeken...</button>
   </div>
@@ -20,10 +20,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="chooseModalLabel"><b>Maak een keuze</b></h3>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
+          <button type="button" (mouseover)="textToSpeech('Foto uploaden')" class="btn btn-dark mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
             data-bs-toggle="modal">Foto Uploaden</button>
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Tekst naar Spraak</button>
         </div>
@@ -37,7 +37,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="imageModalLabel"><b>Upload een foto</b></h3>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
           <form class="needs-validation" [formGroup]="uploadForm" novalidate>
@@ -54,8 +54,8 @@
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
               data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()"
-              data-bs-toggle="modal" data-bs-target="#chooseModal">Anuleren</button>
+            <button (mouseover)="textToSpeech('Annuleren')" type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()"
+              data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
           </div>
         </form>
       </div>

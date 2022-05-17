@@ -68,4 +68,13 @@ export class OverlayComponent implements OnInit {
 				console.log(res);
 			})
 	}
+
+	textToSpeech(text) {
+		var synth = window.speechSynthesis;
+		var utterThis = new SpeechSynthesisUtterance(text);
+		utterThis.lang = 'nl';
+		synth.speak(utterThis);
+	  
+	  
+	  }
 }
