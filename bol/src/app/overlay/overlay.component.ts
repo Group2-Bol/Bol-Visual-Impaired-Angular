@@ -77,7 +77,7 @@ export class OverlayComponent implements OnInit {
 
 		/* Sets a delay between uploading the image and selecting it in the ml5 model.
 		* This is so that the PHP script has some time to actualy upload the image to the
-		* designated folder.	
+		* designated folder.
 		*/
 		setTimeout(
 			() => {
@@ -86,7 +86,7 @@ export class OverlayComponent implements OnInit {
 				setup();
 			},
 			2000
-		) 
+		)
 	}
 
 	delete() {

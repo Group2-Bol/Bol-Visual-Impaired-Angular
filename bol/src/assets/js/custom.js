@@ -6,7 +6,7 @@ let imageModelURL = './assets/custom/';
 // A variable to hold the image we want to classify
 let img;
 
-// Load de model and image first 
+// Load de model and image first
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   img = loadImage('./assets/images/ml5.png');
