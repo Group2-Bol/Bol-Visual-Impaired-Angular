@@ -31,6 +31,7 @@ export class OverlayComponent implements OnInit {
 	ngOnInit(): void {
 
     this.toggleLoadingScreen();
+	this.loadImages("Shirt");
 	this.openPopup();
 
 	}
@@ -96,16 +97,18 @@ export class OverlayComponent implements OnInit {
 			})
 	}
 
-  loadImages() {
-    for (let i = 1; i <= 4; i++)
+  loadImages(label) {
+	const jsonImages= require('./../../app/images.json'); 
+    for (let i = 0; i < 4; i++)
     {
       var imageTag = document.createElement('img');
-      console.log(`./../../assets/sample_images/bloem${i}`);
-      imageTag.src = `./../../assets/sample_images/bloem${i}.jpg`;
+      imageTag.src = jsonImages["images"][label][i];
+
       imageTag.style.maxHeight = '25%';
       imageTag.style.maxWidth = '25%';
       imageTag.style.filter = "contrast(2)";
       imageTag.style.filter = "saturate(3)";
+	  
       document.getElementById("images")?.appendChild(imageTag);
     }
   }

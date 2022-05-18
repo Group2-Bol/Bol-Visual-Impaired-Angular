@@ -11,7 +11,6 @@ images = []
 def createImageStorage():
     if not os.path.exists(imagesStorage):
         os.mkdir(imagesStorage)
-
     
 def acceptCookies():
     try:
@@ -81,7 +80,6 @@ def saveImages(foundImages):
             except Exception as e:
                 print("Woopsie!")
 
-
 def downloadImages():
     for image in images:
         global imageId
@@ -95,7 +93,3 @@ driver = webdriver.Chrome(PATH)
 driver.get(f"https://www.bol.com/nl/nl/menu/categories/subMenu/7")
 acceptCookies()
 getMenus()
-
-
-  
-
