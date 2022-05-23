@@ -41,12 +41,32 @@
 }
 
 .enhancedImages{
-  margin: 185px 185px;
-  top:0px;
-  left:0px;
-  align-items: center;
+  margin: 10px 185px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 75%;
+  overflow: hidden;
 }
 
+.imageDiv {
+  width: 30%;
+  height: auto;
+}
+
+#imageDiv0 {
+  border: 1px solid black;
+  float: left;
+}
+#imageDiv1 {
+  border: 1px solid black;
+  float: left;
+}
+#imageDiv2 {
+  border: 1px solid black;
+}
+#imageDiv3 {
+  border: 1px solid black;
+}
 .loader{
   position: absolute;
   top: 50%;

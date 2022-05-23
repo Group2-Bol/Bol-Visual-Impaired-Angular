@@ -101,15 +101,21 @@ export class OverlayComponent implements OnInit {
 	const jsonImages= require('./../../app/images.json'); 
     for (let i = 0; i < 4; i++)
     {
+	  var imageDesc = document.createElement('div');
+	  imageDesc.setAttribute('class','desc');
+	  imageDesc.style.padding = '15px';
+	  imageDesc.style.textAlign = 'center';
+
       var imageTag = document.createElement('img');
       imageTag.src = jsonImages["images"][label][i];
-
-      imageTag.style.maxHeight = '25%';
-      imageTag.style.maxWidth = '25%';
+	
+	  imageTag.style.width = "180px";
+	  imageTag.style.height = 'auto';	
       imageTag.style.filter = "contrast(2)";
       imageTag.style.filter = "saturate(3)";
 	  
-      document.getElementById("images")?.appendChild(imageTag);
+      document.getElementById("imageDiv" + i)?.appendChild(imageTag);
+	  document.getElementById("imageDiv" + i).appendChild(imageDesc);
     }
   }
 }
