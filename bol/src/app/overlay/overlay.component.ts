@@ -31,7 +31,6 @@ export class OverlayComponent implements OnInit {
 	ngOnInit(): void {
 
     this.toggleLoadingScreen();
-	this.loadImages("Shirt");
 	this.openPopup();
 
 	}
@@ -97,25 +96,48 @@ export class OverlayComponent implements OnInit {
 			})
 	}
 
-  loadImages(label) {
-	const jsonImages= require('./../../app/images.json'); 
-    for (let i = 0; i < 4; i++)
-    {
-	  var imageDesc = document.createElement('div');
-	  imageDesc.setAttribute('class','desc');
-	  imageDesc.style.padding = '15px';
-	  imageDesc.style.textAlign = 'center';
+  	loadImages(label) {
+		const jsonImages= require('./../../app/images.json'); 
+    	for (let i = 0; i < 4; i++)
+    	{
+	  		var imageDesc = document.createElement('div');
+	  		imageDesc.setAttribute('class','desc');
+	  		imageDesc.style.padding = '15px';
+	  		imageDesc.style.textAlign = 'left';
+	  		imageDesc.style.float = 'center';
+	  		imageDesc.style.fontSize = '150%';
+	  		imageDesc.style.marginBottom = '50px';
+	  		imageDesc.style.bottom = '0';
+	  		imageDesc.style.position = 'absolute';
 
-      var imageTag = document.createElement('img');
-      imageTag.src = jsonImages["images"][label][i];
-	
-	  imageTag.style.width = "180px";
-	  imageTag.style.height = 'auto';	
-      imageTag.style.filter = "contrast(2)";
-      imageTag.style.filter = "saturate(3)";
+	  		imageDesc.innerHTML += `<b>${jsonImages["images"][label][i]["nameProduct"]}</b>`;
+
+	  		var priceDiv = document.createElement('div');
+	  		priceDiv.setAttribute('class', 'price');
+	  		priceDiv.style.padding = '15px';
+	  		priceDiv.style.textAlign = 'left';
+	  		priceDiv.style.float = 'center';
+	  		priceDiv.style.fontSize = '250%';
+	  		priceDiv.style.color = 'red';
+	  		priceDiv.style.bottom = '0';
+	  		priceDiv.style.position = 'absolute';
+
+	  		priceDiv.innerHTML += `<b>${jsonImages["images"][label][i]["Prijs"]}</b>`
+
+      		var imageTag = document.createElement('img');
+      		imageTag.src = jsonImages["images"][label][i]["source"];
+	  		imageTag.style.width = "100%";
+	  		imageTag.style.height = 'auto';	
+      		imageTag.style.filter = "contrast(2)";
+      		imageTag.style.filter = "saturate(3)";
 	  
-      document.getElementById("imageDiv" + i)?.appendChild(imageTag);
-	  document.getElementById("imageDiv" + i).appendChild(imageDesc);
-    }
-  }
+      		document.getElementById("imageDiv" + i)?.appendChild(imageTag);
+	  		document.getElementById("imageContainer" + i).appendChild(imageDesc);
+	  		document.getElementById("imageContainer" + i).appendChild(priceDiv);
+	  		document.getElementById("imageContainer" + i).addEventListener('click', function() {
+				var link = jsonImages["images"][label][i]["Link"];
+				window.open(link);
+			});
+    	}
+	}
 }
