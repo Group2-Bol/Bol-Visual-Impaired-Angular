@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
 
 declare function preload(): any;
 declare function setup(): any;
@@ -24,12 +25,14 @@ export class OverlayComponent implements OnInit {
 
 	imgFile!: string
 
-	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private dynamicScriptLoader: DynamicScriptLoaderService) { }
 
 	ngOnInit(): void {
 
     this.toggleLoadingScreen();
 	this.openPopup();
+
+	this.loadScript();
 
 	}
 
@@ -70,7 +73,7 @@ export class OverlayComponent implements OnInit {
 
 		this.httpClient.post('http://localhost:8888/file-upload.php', formData)
 			.subscribe(res => {
-				console.log(res);
+				//this.loadScript();
 			})
 
 		/* Sets a delay between uploading the image and selecting it in the ml5 model.
@@ -79,7 +82,6 @@ export class OverlayComponent implements OnInit {
 		*/
 		setTimeout(
 			() => {
-				console.log("Running...")
 				preload();
 				setup();
 			},
@@ -92,5 +94,17 @@ export class OverlayComponent implements OnInit {
 			.subscribe(res => {
 				console.log(res);
 			})
+	}
+
+	private loadScript()
+	{
+		this.dynamicScriptLoader.load('custom').then(data =>
+		{
+			console.log("Scripts is running!");
+		})
+		.catch(error => 
+		{
+			console.log(error);
+		})
 	}
 }
