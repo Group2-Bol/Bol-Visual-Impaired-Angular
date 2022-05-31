@@ -104,8 +104,7 @@
         <div class="modal-body">
           <form class="needs-validation" [formGroup]="uploadForm" novalidate>
             <div class="custom-file">
-              <input (mouseover)="textToSpeech('Bestand kiezen')" class="form-control form-control-lg" id="formFileLg" formControlName="file"
-                (change)="onImageChange($event)" type="file" accept="image/*" />
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Hier komt uw ingesproken product te staan">
               <div class="invalid-feedback">
                 Geen spraak!
               </div>
