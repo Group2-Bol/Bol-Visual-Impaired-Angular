@@ -54,7 +54,7 @@
         <div class="modal-footer justify-content-between">
           <button type="button" (mouseover)="textToSpeech('Foto uploaden')" class="btn btn-success mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
             data-bs-toggle="modal">Foto Uploaden</button>
-          <button type="button" (mouseover)="textToSpeech('Spraak naar Tekst')" class="btn btn-dark" data-bs-toggle="modal"
+          <button (click)="textToSpeech('Spreek uw gewenste product in, door op de microfoon te klikken')" type="button" (mouseover)="textToSpeech('Spraak naar Tekst')" class="btn btn-dark" data-bs-toggle="modal"
           data-bs-target="#speechModal">Spraak naar Tekst</button>
         </div>
       </div>
@@ -115,6 +115,7 @@
           <div class="modal-footer justify-content-between">
             <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
               data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
+            <img class="mr-auto" height="100px" width="100px" (mouseover)="textToSpeech('Klik en benoem uw gewenste product. Zodra u klaar bent met spreken, klik dan weer op de microfoon')" src="../../assets/images/microphoneIcon.png">
             <button (mouseover)="textToSpeech('Annuleren')" type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()"
               data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
           </div>
