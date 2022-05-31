@@ -54,11 +54,13 @@
         <div class="modal-footer justify-content-between">
           <button type="button" (mouseover)="textToSpeech('Foto uploaden')" class="btn btn-success mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
             data-bs-toggle="modal">Foto Uploaden</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Tekst naar Spraak</button>
+          <button type="button" (mouseover)="textToSpeech('Spraak naar Tekst')" class="btn btn-dark" data-bs-toggle="modal"
+          data-bs-target="#speechModal">Spraak naar Tekst</button>
         </div>
       </div>
     </div>
   </div>
+  
 
   <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -75,6 +77,37 @@
                 (change)="onImageChange($event)" type="file" accept="image/*" />
               <div class="invalid-feedback">
                 Ontbrekende Foto!
+              </div>
+            </div>
+          </form>
+        </div>
+        <form [formGroup]="uploadForm">
+          <div class="modal-footer justify-content-between">
+            <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
+              data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
+            <button (mouseover)="textToSpeech('Annuleren')" type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()"
+              data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="speechModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="imageModalLabel"><b>Spreek uw gewenste product in:</b></h3>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation" [formGroup]="uploadForm" novalidate>
+            <div class="custom-file">
+              <input (mouseover)="textToSpeech('Bestand kiezen')" class="form-control form-control-lg" id="formFileLg" formControlName="file"
+                (change)="onImageChange($event)" type="file" accept="image/*" />
+              <div class="invalid-feedback">
+                Geen spraak!
               </div>
             </div>
           </form>
