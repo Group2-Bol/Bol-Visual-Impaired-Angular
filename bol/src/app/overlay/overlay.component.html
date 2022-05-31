@@ -14,6 +14,35 @@
       data-bs-target="#chooseModal">Zoeken...</button>
   </div>
 
+  <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="chooseModalLabel" aria-hidden="true" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="tosModalLabel"><b>Maak een keuze</b></h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="closePopup()">Bevestigen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="images" class="enhancedImages">
+    <div id="imageContainer0" class="imageContainer">
+      <div id="imageDiv0" class="imageDiv"></div>
+    </div>
+    <div id="imageContainer1" class="imageContainer">
+      <div id="imageDiv1" class="imageDiv"></div>
+    </div>
+    <div id="imageContainer2" class="imageContainer">
+      <div id="imageDiv2" class="imageDiv"></div>
+    </div>
+    <div id="imageContainer3" class="imageContainer"> 
+      <div id="imageDiv3" class="imageDiv"></div>
+    </div>
+</div>
+
   <div class="modal fade" id="chooseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="chooseModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -69,5 +98,6 @@
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </div> 
+
 </body>

@@ -6,7 +6,7 @@ import { OverlayComponent } from './overlay/overlay.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/image-classifier',
+    redirectTo: '/overlay',
     pathMatch: 'full'
   },
   {path: "overlay", component: OverlayComponent},
