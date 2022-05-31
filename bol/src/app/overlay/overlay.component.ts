@@ -25,6 +25,7 @@ export class OverlayComponent implements OnInit {
 	});
 
 	imgFile!: string
+	start = false;
 
 	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
@@ -109,11 +110,28 @@ export class OverlayComponent implements OnInit {
 
 	}
 
-	speechToText() {
+	speechToText(listening: boolean) {
 		const SpeechRecognition = window['webkitSpeechRecognition'];
 		var recognition = new SpeechRecognition();
 		recognition.continuous = true;
-		recognition.start();
+		this.textToSpeech('');
+		if(listening == true)
+		{
+			recognition.start();
+			let element: HTMLElement = document.getElementById('microphoneIcon');
+			
+			element.style.filter = 'invert(44%) sepia(32%) saturate(6567%) hue-rotate(340deg) brightness(99%) contrast(109%)'
+			return;
+		}
+
+		if(listening == false)
+		{
+			recognition.stop();
+			let element: HTMLElement = document.getElementById('microphoneIcon');
+			
+			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
+			return;
+		}
 
 	}
 

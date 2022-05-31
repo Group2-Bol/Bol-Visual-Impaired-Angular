@@ -115,7 +115,7 @@
           <div class="modal-footer justify-content-between">
             <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
               data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
-            <img (click)="speechToText()" (mouseout)="textToSpeech('')" class="mr-auto" height="100px" style="filter: invert(58%) sepia(59%) saturate(4009%) hue-rotate(159deg) brightness(91%) contrast(101%);"  width="100px" (mouseover)="textToSpeech('Klik en houdt uw muis op de microfoon, en benoem vervolgens uw gewenste product. Zodra u klaar bent met spreken, klik dan weer op de microfoon')" src="../../assets/images/microphoneIcon.png">
+            <img id="microphoneIcon" (pointerdown)="speechToText(true)" (pointerup)="speechToText(false)" (mouseout)="textToSpeech('')" class="mr-auto" height="100px" style="filter: invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%);" width="100px" (mouseover)="textToSpeech('Klik en houdt uw muis ingedrukt, en spreek vervolgens uw gewenste product. Zodra u klaar bent met spreken, laat uw muis dan weer los')" src="../../assets/images/microphoneIcon.png">
             <button (mouseover)="textToSpeech('Annuleren')" (mouseout)="textToSpeech('')" type="button" class="btn btn-danger" data-bs-dismiss="modal"
               data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
           </div>
