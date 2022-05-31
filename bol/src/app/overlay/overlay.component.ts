@@ -24,9 +24,12 @@ export class OverlayComponent implements OnInit {
 		fileSource: new FormControl('', Validators.required)
 	});
 
-	imgFile!: string
-	start = false;
+	imgFile!: string;
 
+	SpeechRecognition = window['webkitSpeechRecognition'];
+	recognition = new this.SpeechRecognition();
+
+	
 	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
 	ngOnInit(): void {
@@ -111,28 +114,36 @@ export class OverlayComponent implements OnInit {
 	}
 
 	speechToText(listening: boolean) {
-		const SpeechRecognition = window['webkitSpeechRecognition'];
-		var recognition = new SpeechRecognition();
-		recognition.continuous = true;
 		this.textToSpeech('');
-		if(listening == true)
-		{
-			recognition.start();
+		this.recognition.continuous = true;
+		if (listening == true) {
+			this.recognition.start();
 			let element: HTMLElement = document.getElementById('microphoneIcon');
-			
+
 			element.style.filter = 'invert(44%) sepia(32%) saturate(6567%) hue-rotate(340deg) brightness(99%) contrast(109%)'
 			return;
 		}
 
-		if(listening == false)
-		{
-			recognition.stop();
+		if (listening == false) {
+			this.recognition.stop();
 			let element: HTMLElement = document.getElementById('microphoneIcon');
-			
-			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
-			return;
-		}
 
+			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
+
+			var content = "";
+			this.recognition.onresult = function (event) {
+				var current = event.resultIndex;
+
+				var transcript = event.results[current][0].transcript;
+
+				content += transcript;
+				console.log(content);
+				document.getElementById('speechToTextBox').setAttribute('value', content);
+			}
+
+
+
+		}
 	}
 
 	loadImages(label) {
