@@ -88,10 +88,17 @@ export class OverlayComponent implements OnInit {
         preload();
         setup();
         saveLabel();
-
-        console.log(localStorage.getItem("label"));
+        this.result = localStorage.getItem("label");
       },
       2000
+    )
+
+    setTimeout(
+      () => {
+        this.toggleLoadingScreen();
+        this.loadImages(this.result);
+      },
+      3000
     )
   }
 
