@@ -1,0 +1,19 @@
+.background{
+    font-family: graphik,arial,helvetica,sans-serif;
+    background-color: #0000a4 !important;
+    padding: 2vh;
+}
+
+.col-12 input{
+    width: 40vw;
+}
+
+.logo{
+    width: 15vw;
+    margin-right: 10vw;
+}
+
+.search-bar{
+    border-radius: 1.5rem !important;
+    height: 13vh;
+}
