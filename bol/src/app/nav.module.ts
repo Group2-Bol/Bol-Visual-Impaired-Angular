@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { ImageClassifierComponent } from './image-classifier/image-classifier.component';
 import { JstestComponent } from './jstest/jstest.component';
 import { OverlayComponent } from './overlay/overlay.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImageClassifierComponent,
     JstestComponent,
-    OverlayComponent
+    OverlayComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
