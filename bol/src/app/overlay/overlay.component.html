@@ -102,24 +102,20 @@
           <button type="button" (mouseover)="textToSpeech('Sluiten')" (mouseout)="textToSpeech('')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
-          <form class="needs-validation" [formGroup]="uploadForm" novalidate>
             <div class="custom-file">
-              <input type="text" class="form-control" id="speechToTextBox" placeholder="Hier komt uw ingesproken product te staan">
+              <input type="text" [(ngModel)]='ingesprokenProduct' class="form-control" id="speechToTextBox" placeholder="Hier komt uw ingesproken product te staan">
               <div class="invalid-feedback">
                 Geen spraak!
               </div>
             </div>
-          </form>
         </div>
-        <form [formGroup]="uploadForm">
           <div class="modal-footer justify-content-between">
-            <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
-              data-bs-dismiss="modal" [disabled]="uploadForm.invalid">Bevestigen</button>
+            <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="loadImages(ingesprokenProduct)"
+              data-bs-dismiss="modal">Bevestigen</button>
             <input type='image' id="microphoneIcon" (mousedown)="speechToText(true)" (mouseout)="speechToText(false)" (pointerup)="speechToText(false)" (mouseup)="textToSpeech('')" class="mr-auto" height="100px" style="filter: invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%);" width="100px" (mouseover)="textToSpeech('Houdt uw muis ingedrukt, en spreek vervolgens uw gewenste product in. Zodra u klaar bent met spreken, laat uw muis dan weer los')" src="../../assets/images/microphoneIcon.png">
             <button (mouseover)="textToSpeech('Annuleren')" (mouseout)="textToSpeech('')" type="button" class="btn btn-danger" data-bs-dismiss="modal"
               data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
           </div>
-        </form>
       </div>
     </div>
   </div>

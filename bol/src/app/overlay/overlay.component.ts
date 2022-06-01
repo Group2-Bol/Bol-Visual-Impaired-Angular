@@ -26,7 +26,7 @@ export class OverlayComponent implements OnInit {
 
 	imgFile!: string;
 	naam!: string;
-
+	ingesprokenProduct!: string;
 	SpeechRecognition = window['webkitSpeechRecognition'];
 	recognition = new this.SpeechRecognition();
 
@@ -131,15 +131,15 @@ export class OverlayComponent implements OnInit {
 			let element: HTMLElement = document.getElementById('microphoneIcon');
 
 			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
-			this.recognition.onresult = function (event) {
+			var content;
+			this.recognition.onresult =  (event) => {
 				var current = event.resultIndex;
 
-				var content;
 				var transcript = event.results[current][0].transcript;
 				content = "";
 				content += transcript;
 				console.log(content);
-				document.getElementById('speechToTextBox').setAttribute('value', content);
+				this.ingesprokenProduct = content;
 
 				var synth = window.speechSynthesis;
 				var utterThis = new SpeechSynthesisUtterance("Uw zoekopdracht is: " + content);
@@ -151,6 +151,7 @@ export class OverlayComponent implements OnInit {
 
 	loadImages(label) {
 		const jsonImages = require('./../../app/images.json');
+		console.log(label);
 		for (let i = 0; i < 4; i++) {
 			var imageDesc = document.createElement('div');
 			imageDesc.setAttribute('class', 'desc');
