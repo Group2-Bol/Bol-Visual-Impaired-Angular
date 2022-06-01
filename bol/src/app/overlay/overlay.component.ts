@@ -25,14 +25,16 @@ export class OverlayComponent implements OnInit {
 	});
 
 	imgFile!: string;
+	naam!: string;
 
 	SpeechRecognition = window['webkitSpeechRecognition'];
 	recognition = new this.SpeechRecognition();
 
-	
+
 	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
 	ngOnInit(): void {
+
 
 		this.toggleLoadingScreen();
 		this.openPopup();
@@ -100,7 +102,7 @@ export class OverlayComponent implements OnInit {
 			})
 	}
 
-	textToSpeech(text) {
+	public textToSpeech(text) {
 		var synth = window.speechSynthesis;
 		var utterThis = new SpeechSynthesisUtterance(text);
 		if (text == '') {
@@ -129,20 +131,21 @@ export class OverlayComponent implements OnInit {
 			let element: HTMLElement = document.getElementById('microphoneIcon');
 
 			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
-
-			var content = "";
 			this.recognition.onresult = function (event) {
 				var current = event.resultIndex;
 
+				var content;
 				var transcript = event.results[current][0].transcript;
-
+				content = "";
 				content += transcript;
 				console.log(content);
 				document.getElementById('speechToTextBox').setAttribute('value', content);
+
+				var synth = window.speechSynthesis;
+				var utterThis = new SpeechSynthesisUtterance("Uw zoekopdracht is: " + content);
+				utterThis.lang = 'nl';
+				synth.speak(utterThis);
 			}
-
-
-
 		}
 	}
 

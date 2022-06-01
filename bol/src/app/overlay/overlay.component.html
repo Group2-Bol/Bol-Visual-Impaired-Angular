@@ -2,15 +2,15 @@
   <header class="background text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <button (mouseover)="textToSpeech('Terug')" type="button" class="home-btn btn btn-light">Terug</button>
+        <button (mouseover)="textToSpeech('Terug')" (mouseout)="textToSpeech('')" type="button" class="home-btn btn btn-light">Terug</button>
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
           <img class="logo" src="../../assets/images/bol-logo.png">
         </a>
       </div>
     </div>
   </header>
-  <div (mouseover)="textToSpeech('Zoeken')" class="container" >
-    <button class="search-btn btn btn-outline-dark" data-bs-toggle="modal"
+  <div class="container" >
+    <button (click)="textToSpeech('Maak een keuze op welk manier u een product wilt zoeken')" (mouseover)="textToSpeech('Zoeken')" class="search-btn btn btn-outline-dark" data-bs-toggle="modal"
       data-bs-target="#chooseModal">Zoeken...</button>
   </div>
 
@@ -49,10 +49,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="chooseModalLabel"><b>Maak een keuze</b></h3>
-          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" (mouseout)="textToSpeech('')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" (mouseover)="textToSpeech('Foto uploaden')" class="btn btn-success mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
+          <button type="button" (mouseover)="textToSpeech('Foto uploaden')" (mouseout)="textToSpeech('')" class="btn btn-success mr-auto" data-bs-dismiss="modal" data-bs-target="#imageModal"
             data-bs-toggle="modal">Foto Uploaden</button>
           <button (click)="textToSpeech('Spreek uw gewenste product in, door de microfoon knop ingedrukt te houden')" type="button" (mouseover)="textToSpeech('Spraak naar Tekst')" class="btn btn-dark" data-bs-toggle="modal"
           data-bs-target="#speechModal">Spraak naar Tekst</button>
@@ -68,7 +68,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="imageModalLabel"><b>Upload een foto</b></h3>
-          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" (mouseout)="textToSpeech('')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
           <form class="needs-validation" [formGroup]="uploadForm" novalidate>
@@ -99,7 +99,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="imageModalLabel"><b>Spreek uw gewenste product in:</b></h3>
-          <button type="button" (mouseover)="textToSpeech('Sluiten')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
+          <button type="button" (mouseover)="textToSpeech('Sluiten')" (mouseout)="textToSpeech('')" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Sluiten</button>
         </div>
         <div class="modal-body">
           <form class="needs-validation" [formGroup]="uploadForm" novalidate>
