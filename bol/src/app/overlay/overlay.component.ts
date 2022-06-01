@@ -97,12 +97,14 @@ export class OverlayComponent implements OnInit {
       () => {
         this.toggleLoadingScreen();
         this.loadImages(this.result);
+        this.delete();
       },
       3000
     )
   }
 
   delete() {
+    localStorage.removeItem("label");
     this.httpClient.get('http://localhost:8888/file-delete.php')
       .subscribe(res => {
         console.log(res);
