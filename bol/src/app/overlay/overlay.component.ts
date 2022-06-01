@@ -3,8 +3,10 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
 
+
 declare function preload(): any;
 declare function setup(): any;
+declare function saveLabel(): any;
 
 @Component({
   selector: 'app-overlay',
@@ -16,6 +18,7 @@ export class OverlayComponent implements OnInit {
   @ViewChild('content') content: any;
 
   fileGroup!: FormGroup;
+  result: String;
 
   uploadForm = new FormGroup({
     name: new FormControl('', null),
@@ -84,6 +87,9 @@ export class OverlayComponent implements OnInit {
       () => {
         preload();
         setup();
+        saveLabel();
+
+        console.log(localStorage.getItem("label"));
       },
       2000
     )

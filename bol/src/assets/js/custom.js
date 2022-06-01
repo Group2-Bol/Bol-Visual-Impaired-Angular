@@ -6,6 +6,8 @@ let imageModelURL = './assets/custom/';
 // A variable to hold the image we want to classify
 let img;
 
+let resultLabel = "";
+
 // Load de model and image first
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
@@ -24,6 +26,12 @@ function gotResult(error, results) {
   } else {
     // The results are in an array ordered by confidence.
     console.log(results[0]);
-    return results[0].label;
+    resultLabel = results[0].label;
+    return results[0];
   }
+}
+
+function saveLabel()
+{
+  localStorage.setItem("label", resultLabel);
 }
