@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,7 +12,7 @@ declare function setup(): any;
 })
 export class OverlayComponent implements OnInit {
 
-	@ViewChild('content') content : any;
+	@ViewChild('content') content: any;
 
 	fileGroup!: FormGroup;
 	// formFileLg!: FormControl;
@@ -24,14 +24,20 @@ export class OverlayComponent implements OnInit {
 		fileSource: new FormControl('', Validators.required)
 	});
 
-	imgFile!: string
+	imgFile!: string;
+	naam!: string;
+	ingesprokenProduct!: string;
+	SpeechRecognition = window['webkitSpeechRecognition'];
+	recognition = new this.SpeechRecognition();
+
 
 	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
 	ngOnInit(): void {
 
-    this.toggleLoadingScreen();
-	this.openPopup();
+
+		this.toggleLoadingScreen();
+		this.openPopup();
 
 	}
 
@@ -96,48 +102,95 @@ export class OverlayComponent implements OnInit {
 			})
 	}
 
-  	loadImages(label) {
-		const jsonImages= require('./../../app/images.json'); 
-    	for (let i = 0; i < 4; i++)
-    	{
-	  		var imageDesc = document.createElement('div');
-	  		imageDesc.setAttribute('class','desc');
-	  		imageDesc.style.padding = '15px';
-	  		imageDesc.style.textAlign = 'left';
-	  		imageDesc.style.float = 'center';
-	  		imageDesc.style.fontSize = '150%';
-	  		imageDesc.style.marginBottom = '50px';
-	  		imageDesc.style.bottom = '0';
-	  		imageDesc.style.position = 'absolute';
+	public textToSpeech(text) {
+		var synth = window.speechSynthesis;
+		var utterThis = new SpeechSynthesisUtterance(text);
+		if (text == '') {
+			synth.cancel();
+			return;
+		}
+		utterThis.lang = 'nl';
+		utterThis.rate = 1.7;
+		synth.speak(utterThis);
 
-	  		imageDesc.innerHTML += `<b>${jsonImages["images"][label][i]["nameProduct"]}</b>`;
+	}
 
-	  		var priceDiv = document.createElement('div');
-	  		priceDiv.setAttribute('class', 'price');
-	  		priceDiv.style.padding = '15px';
-	  		priceDiv.style.textAlign = 'left';
-	  		priceDiv.style.float = 'center';
-	  		priceDiv.style.fontSize = '250%';
-	  		priceDiv.style.color = 'red';
-	  		priceDiv.style.bottom = '0';
-	  		priceDiv.style.position = 'absolute';
+	speechToText(listening: boolean) {
+		this.textToSpeech('');
+		this.recognition.continuous = true;
+		if (listening == true) {
+			this.recognition.start();
+			let element: HTMLElement = document.getElementById('microphoneIcon');
 
-	  		priceDiv.innerHTML += `<b>${jsonImages["images"][label][i]["Prijs"]}</b>`
+			element.style.filter = 'invert(44%) sepia(32%) saturate(6567%) hue-rotate(340deg) brightness(99%) contrast(109%)'
+			return;
+		}
 
-      		var imageTag = document.createElement('img');
-      		imageTag.src = jsonImages["images"][label][i]["source"];
-	  		imageTag.style.width = "100%";
-	  		imageTag.style.height = 'auto';	
-      		imageTag.style.filter = "contrast(2)";
-      		imageTag.style.filter = "saturate(3)";
-	  
-      		document.getElementById("imageDiv" + i)?.appendChild(imageTag);
-	  		document.getElementById("imageContainer" + i).appendChild(imageDesc);
-	  		document.getElementById("imageContainer" + i).appendChild(priceDiv);
-	  		document.getElementById("imageContainer" + i).addEventListener('click', function() {
+		if (listening == false) {
+			this.recognition.stop();
+			let element: HTMLElement = document.getElementById('microphoneIcon');
+
+			element.style.filter = 'invert(77%) sepia(97%) saturate(2085%) hue-rotate(57deg) brightness(98%) contrast(90%)'
+			var content;
+			this.recognition.onresult =  (event) => {
+				var current = event.resultIndex;
+
+				var transcript = event.results[current][0].transcript;
+				content = "";
+				content += transcript;
+				console.log(content);
+				this.ingesprokenProduct = content;
+
+				var synth = window.speechSynthesis;
+				var utterThis = new SpeechSynthesisUtterance("Uw zoekopdracht is: " + content);
+				utterThis.lang = 'nl';
+				synth.speak(utterThis);
+			}
+		}
+	}
+
+	loadImages(label) {
+		const jsonImages = require('./../../app/images.json');
+		console.log(label);
+		for (let i = 0; i < 4; i++) {
+			var imageDesc = document.createElement('div');
+			imageDesc.setAttribute('class', 'desc');
+			imageDesc.style.padding = '15px';
+			imageDesc.style.textAlign = 'left';
+			imageDesc.style.float = 'center';
+			imageDesc.style.fontSize = '150%';
+			imageDesc.style.marginBottom = '50px';
+			imageDesc.style.bottom = '0';
+			imageDesc.style.position = 'absolute';
+
+			imageDesc.innerHTML += `<b>${jsonImages["images"][label][i]["nameProduct"]}</b>`;
+
+			var priceDiv = document.createElement('div');
+			priceDiv.setAttribute('class', 'price');
+			priceDiv.style.padding = '15px';
+			priceDiv.style.textAlign = 'left';
+			priceDiv.style.float = 'center';
+			priceDiv.style.fontSize = '250%';
+			priceDiv.style.color = 'red';
+			priceDiv.style.bottom = '0';
+			priceDiv.style.position = 'absolute';
+
+			priceDiv.innerHTML += `<b>${jsonImages["images"][label][i]["Prijs"]}</b>`
+
+			var imageTag = document.createElement('img');
+			imageTag.src = jsonImages["images"][label][i]["source"];
+			imageTag.style.width = "100%";
+			imageTag.style.height = 'auto';
+			imageTag.style.filter = "contrast(2)";
+			imageTag.style.filter = "saturate(3)";
+
+			document.getElementById("imageDiv" + i)?.appendChild(imageTag);
+			document.getElementById("imageContainer" + i).appendChild(imageDesc);
+			document.getElementById("imageContainer" + i).appendChild(priceDiv);
+			document.getElementById("imageContainer" + i).addEventListener('click', function () {
 				var link = jsonImages["images"][label][i]["Link"];
 				window.open(link);
 			});
-    	}
+		}
 	}
 }
