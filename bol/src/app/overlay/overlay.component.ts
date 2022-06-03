@@ -73,6 +73,8 @@ export class OverlayComponent implements OnInit {
 	}
 
 	upload() {
+		this.deleteImages()
+
 		const formData = new FormData;
 		formData.append('file', this.uploadForm.get('fileSource')?.value);
 
@@ -150,10 +152,12 @@ export class OverlayComponent implements OnInit {
 	}
 
 	loadImages(label) {
+		this.deleteImages();
 		const jsonImages = require('./../../app/images.json');
 		console.log(label);
 		for (let i = 0; i < 4; i++) {
 			var imageDesc = document.createElement('div');
+			//imageDesc.setAttribute('id', 'desc');
 			imageDesc.setAttribute('class', 'desc');
 			imageDesc.style.padding = '15px';
 			imageDesc.style.textAlign = 'left';
@@ -166,6 +170,7 @@ export class OverlayComponent implements OnInit {
 			imageDesc.innerHTML += `<b>${jsonImages["images"][label][i]["nameProduct"]}</b>`;
 
 			var priceDiv = document.createElement('div');
+			//priceDiv.setAttribute('id', 'price');
 			priceDiv.setAttribute('class', 'price');
 			priceDiv.style.padding = '15px';
 			priceDiv.style.textAlign = 'left';
@@ -178,6 +183,8 @@ export class OverlayComponent implements OnInit {
 			priceDiv.innerHTML += `<b>${jsonImages["images"][label][i]["Prijs"]}</b>`
 
 			var imageTag = document.createElement('img');
+			//imageTag.setAttribute('id', 'enhancedImage');
+			imageTag.setAttribute('class', 'enhancedImage');
 			imageTag.src = jsonImages["images"][label][i]["source"];
 			imageTag.style.width = "100%";
 			imageTag.style.height = 'auto';
@@ -191,6 +198,22 @@ export class OverlayComponent implements OnInit {
 				var link = jsonImages["images"][label][i]["Link"];
 				window.open(link);
 			});
+		}
+	}
+
+	deleteImages() {
+		var elements = document.getElementsByClassName('desc');
+		for (const tag of Array.from(elements)) {
+			tag.parentNode.removeChild(tag);
+		}
+		var elements = document.getElementsByClassName('price');
+		for (const tag of Array.from(elements)) {
+			tag.parentNode.removeChild(tag);
+		}
+
+		var elements = document.getElementsByClassName('enhancedImage');
+		for (const tag of Array.from(elements)) {
+			tag.parentNode.removeChild(tag);
 		}
 	}
 }
