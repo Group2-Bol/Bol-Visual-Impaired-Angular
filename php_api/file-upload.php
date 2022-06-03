@@ -10,7 +10,7 @@
   $tmp1 = explode('.', $_FILES['file']['name']);
   $tmp2 = end($tmp1);
   $file_ext = strtolower($tmp2);
-  $file = $folderPath . 'ml5' . '.'.$file_ext;
+  $file = $folderPath . 'ml5' . '.png';
   move_uploaded_file($file_temp, $file);
   
 ?>
