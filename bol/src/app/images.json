@@ -1,6 +1,6 @@
 {
     "images": {
-        "Pyjama": [
+        "pyjama": [
             {
                 "source": "https://media.s-bol.com/q6Kp2wkg1l2R/LZvO0ww/168x161.jpg",
                 "nameProduct": "By Louise Dames pyjamaset",
@@ -26,7 +26,7 @@
                 "Link": "https://www.bol.com/nl/nl/p/hunkemoller-dames-nachtmode-korte-pyjama-set-groen-maat-m/9300000083178780/?bltgh=uHL-Nv82azo2--DqWGlCQQ.4_11.12.ProductImage"
             }
         ],
-        "Shirt": [
+        "shirt": [
             {
                 "source": "https://media.s-bol.com/mwoK2Zpkoz33/157x210.jpg",
                 "nameProduct": "Jack & Jones Polo shirt",
@@ -52,7 +52,7 @@
                 "Link": "https://www.bol.com/nl/nl/p/ballin-amsterdam-jongens-slim-fit-t-shirt-groen-maat-164/9300000067086340/?bltgh=tBgbqJpgHCa5gCWe7KBHwg.q8fN-uusm7VXfcMqkGlAYA_0_31.42.ProductImage"
             }
         ],
-        "Schoenen": [
+        "schoenen": [
             {
                 "source": "https://media.s-bol.com/L0DZ87xV2pmp/q7Kl6p0/168x83.jpg",
                 "nameProduct": "Nike Air Max 90 LTR GS Grijs - Sneaker",
@@ -78,7 +78,7 @@
                 "Link": "https://www.bol.com/nl/nl/p/vans-old-skool-sneakers-unisex-zwart-wit-maat-40/9200000058974012/?bltgh=rr-ZGSo6goZbmupxlLVB7Q.gnwYmtZgEA5UFQhLTUpIZA_0_30.45.ProductImage"
             }
         ],
-        "Baby kleren": [
+        "babykleren": [
            {
                 "source": "https://media.s-bol.com/3OnwKjxvA0MA/BN6lJLx/158x210.jpg",
                 "nameProduct": "Special Edition F1 Racing romper",
