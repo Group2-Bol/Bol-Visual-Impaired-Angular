@@ -14,15 +14,23 @@
       data-bs-target="#chooseModal">Zoeken...</button>
   </div>
 
-  <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="chooseModalLabel" aria-hidden="true" [ngStyle]="{'display':displayStyle}">
+  <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="chooseModalLabel"
+    aria-hidden="true" [ngStyle]="{'display':displayStyle}">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="tosModalLabel"><b>Maak een keuze</b></h3>
+          <h3 class="modal-title" id="tosModalLabel"><b>Welkom!</b></h3>
+        </div>
+        <div class="modal-body">
+          <p id="tosModalBody">Welkom bij de nieuwe pagina van bol.com! Deze pagina is speciaal gemaakt voor
+            mensen met een visuele beperking. Op deze pagina is het mogelijk om artiekelen van de bol.com website
+            te bekijken. Dit wordt mogelijk gemaakt doordat u een foto kunt uploaden, en aan de hand van die foto
+            worden er resultaten weergegeven. Ook is het mogelijk dat u aan ons verteld wat u zoekt. Om deze functie
+            te gebruiken is een microfoon helaas wel verplicht.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="closePopup()">Bevestigen</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+            (click)="closePopup()">Bevestigen</button>
         </div>
       </div>
     </div>
@@ -38,7 +46,7 @@
     <div id="imageContainer2" class="imageContainer">
       <div id="imageDiv2" class="imageDiv"></div>
     </div>
-    <div id="imageContainer3" class="imageContainer"> 
+    <div id="imageContainer3" class="imageContainer">
       <div id="imageDiv3" class="imageDiv"></div>
     </div>
 </div>
@@ -60,7 +68,7 @@
       </div>
     </div>
   </div>
-  
+
 
   <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -78,9 +86,9 @@
               <div class="invalid-feedback">
                 Ontbrekende Foto!
               </div>
-            </div>
-          </form>
-        </div>
+              </div>
+            </form>
+          </div>
         <form [formGroup]="uploadForm">
           <div class="modal-footer justify-content-between">
             <button (mouseover)="textToSpeech('Bevestigen')" type="button" class="btn btn-success mr-auto" (click)="toggleLoadingScreen()"
@@ -89,9 +97,9 @@
               data-bs-toggle="modal" data-bs-target="#chooseModal">Annuleren</button>
           </div>
         </form>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="modal fade" id="speechModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -127,6 +135,6 @@
     <span></span>
     <span></span>
     <span></span>
-  </div> 
+  </div>
 
 </body>

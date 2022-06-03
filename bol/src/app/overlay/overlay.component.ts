@@ -1,28 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
+
 
 declare function preload(): any;
 declare function setup(): any;
+declare function saveLabel(): any;
 
 @Component({
-	selector: 'app-overlay',
-	templateUrl: './overlay.component.html',
-	styleUrls: ['./overlay.component.css']
+  selector: 'app-overlay',
+  templateUrl: './overlay.component.html',
+  styleUrls: ['./overlay.component.css']
 })
 export class OverlayComponent implements OnInit {
 
 	@ViewChild('content') content: any;
 
-	fileGroup!: FormGroup;
-	// formFileLg!: FormControl;
-	// imgSrc!: FormControl;
+  fileGroup!: FormGroup;
+  result: String;
 
-	uploadForm = new FormGroup({
-		name: new FormControl('', null),
-		file: new FormControl('', Validators.required),
-		fileSource: new FormControl('', Validators.required)
-	});
+  uploadForm = new FormGroup({
+    name: new FormControl('', null),
+    file: new FormControl('', Validators.required),
+    fileSource: new FormControl('', Validators.required)
+  });
 
 	imgFile!: string;
 	naam!: string;
@@ -31,78 +33,100 @@ export class OverlayComponent implements OnInit {
 	recognition = new this.SpeechRecognition();
 
 
-	constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private dynamicScriptLoader: DynamicScriptLoaderService) { }
 
-	ngOnInit(): void {
+  ngOnInit(): void {
 
+    this.toggleLoadingScreen();
+    this.openPopup();
 
-		this.toggleLoadingScreen();
-		this.openPopup();
+    this.loadScript();
 
-	}
+  }
 
-	displayStyle = "none";
+  displayStyle = "none";
 
-	openPopup() {
-		this.displayStyle = "block";
-	}
+  openPopup() {
+    this.displayStyle = "block";
+  }
 
-	closePopup() {
-		this.displayStyle = "none";
-	}
+  closePopup() {
+    this.displayStyle = "none";
+  }
 
-	toggleLoadingScreen() {
-		var loadingScreenDiv = document.getElementById("loading-screen");
+  toggleLoadingScreen() {
+    var loadingScreenDiv = document.getElementById("loading-screen");
 
-		if (loadingScreenDiv?.style.display == 'none') {
-			loadingScreenDiv.style.display = "flex";
-			this.upload();
-		}
-		else {
-			loadingScreenDiv!.style.display = "none";
-		}
-	}
+    if (loadingScreenDiv?.style.display == 'none') {
+      loadingScreenDiv.style.display = "flex";
+      this.upload();
+    }
+    else {
+      loadingScreenDiv!.style.display = "none";
+    }
+  }
 
-	onImageChange(event: any) {
-		if (event.target.files.length > 0) {
-			const file = event.target.files[0];
-			this.uploadForm.patchValue({
-				fileSource: file
-			})
-		}
-	}
+  onImageChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.uploadForm.patchValue({
+        fileSource: file
+      })
+    }
+  }
 
-	upload() {
-		this.deleteImages()
+  upload() {
+    this.deleteImages();
+    
+    const formData = new FormData;
+    formData.append('file', this.uploadForm.get('fileSource')?.value);
 
-		const formData = new FormData;
-		formData.append('file', this.uploadForm.get('fileSource')?.value);
+    this.httpClient.post('http://localhost:8888/file-upload.php', formData)
+      .subscribe(res => {
+        //this.loadScript();
+      })
 
-		this.httpClient.post('http://localhost:8888/file-upload.php', formData)
-			.subscribe(res => {
-				console.log(res);
-			})
+    /* Sets a delay between uploading the image and selecting it in the ml5 model.
+    * This is so that the PHP script has some time to actualy upload the image to the
+    * designated folder.
+    */
+    setTimeout(
+      () => {
+        preload();
+        setup();
+        saveLabel();
+        this.result = localStorage.getItem("label");
+      },
+      2000
+    )
 
-		/* Sets a delay between uploading the image and selecting it in the ml5 model.
-		* This is so that the PHP script has some time to actualy upload the image to the
-		* designated folder.
-		*/
-		setTimeout(
-			() => {
-				console.log("Running...")
-				preload();
-				setup();
-			},
-			2000
-		)
-	}
+    setTimeout(
+      () => {
+        this.toggleLoadingScreen();
+        this.loadImages(this.result);
+        this.delete();
+      },
+      3000
+    )
+  }
 
-	delete() {
-		this.httpClient.get('http://localhost:8888/file-delete.php')
-			.subscribe(res => {
-				console.log(res);
-			})
-	}
+  delete() {
+    localStorage.removeItem("label");
+    this.httpClient.get('http://localhost:8888/file-delete.php')
+      .subscribe(res => {
+        console.log(res);
+      })
+  }
+
+  private loadScript() {
+    this.dynamicScriptLoader.load('custom').then(data => {
+      console.log("Scripts is running!");
+    })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
 
 	public textToSpeech(text) {
 		var synth = window.speechSynthesis;
