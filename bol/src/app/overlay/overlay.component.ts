@@ -77,7 +77,7 @@ export class OverlayComponent implements OnInit {
 
   upload() {
     this.deleteImages();
-    
+
     const formData = new FormData;
     formData.append('file', this.uploadForm.get('fileSource')?.value);
 
@@ -111,7 +111,8 @@ export class OverlayComponent implements OnInit {
   }
 
   delete() {
-    localStorage.removeItem("label");
+    localStorage.clear();
+    this.result = "";
     this.httpClient.get('http://localhost:8888/file-delete.php')
       .subscribe(res => {
         console.log(res);
