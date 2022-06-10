@@ -94,8 +94,6 @@ export class OverlayComponent implements OnInit {
       () => {
         preload();
         setup();
-        saveLabel();
-        this.result = localStorage.getItem("label");
       },
       2000
     )
@@ -103,6 +101,7 @@ export class OverlayComponent implements OnInit {
     setTimeout(
       () => {
         this.toggleLoadingScreen();
+        this.result = localStorage.getItem("label");
         this.loadImages(this.result);
         this.delete();
       },

@@ -6,7 +6,7 @@ let imageModelURL = './assets/custom/';
 // A variable to hold the image we want to classify
 let img;
 
-let resultLabel = "";
+//let resultLabel = "";
 
 // Load de model and image first
 function preload() {
@@ -21,17 +21,19 @@ function setup() {
 // A function to run when we get any errors and the results
 function gotResult(error, results) {
   // Display error in the console
+  resultLabel = "";
   if (error) {
     console.error(error);
   } else {
     // The results are in an array ordered by confidence.
     console.log(results[0]);
-    resultLabel = results[0].label;
+    resultLabel = results[0].label.toString();
+    saveLabel(resultLabel);
     return results[0];
   }
 }
 
-function saveLabel()
+function saveLabel(_label)
 {
-  localStorage.setItem("label", resultLabel);
+  localStorage.setItem("label", _label);
 }
