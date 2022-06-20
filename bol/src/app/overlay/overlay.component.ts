@@ -32,7 +32,6 @@ export class OverlayComponent implements OnInit {
 	SpeechRecognition = window['webkitSpeechRecognition'];
 	recognition = new this.SpeechRecognition();
 
-
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private dynamicScriptLoader: DynamicScriptLoaderService) { }
 
   ngOnInit(): void {
@@ -52,6 +51,10 @@ export class OverlayComponent implements OnInit {
 
   closePopup() {
     this.displayStyle = "none";
+    var rndCanvas = document.getElementsByClassName("p5Canvas");
+    for (const tag of Array.from(rndCanvas)) {
+			tag.parentNode.removeChild(tag);
+		}
   }
 
   toggleLoadingScreen() {
@@ -179,6 +182,7 @@ export class OverlayComponent implements OnInit {
 		this.deleteImages();
 		const jsonImages = require('./../../app/images.json');
 		console.log(label);
+    this.textToSpeech("Er zijn vier resultaten gevonden voor " + label);
 		for (let i = 0; i < 4; i++) {
 			var imageDesc = document.createElement('div');
 			//imageDesc.setAttribute('id', 'desc');
