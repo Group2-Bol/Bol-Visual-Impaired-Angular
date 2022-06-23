@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
@@ -32,7 +32,7 @@ export class OverlayComponent implements OnInit {
 	SpeechRecognition = window['webkitSpeechRecognition'];
 	recognition = new this.SpeechRecognition();
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private dynamicScriptLoader: DynamicScriptLoaderService) { }
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private dynamicScriptLoader: DynamicScriptLoaderService, private cdRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -168,6 +168,11 @@ export class OverlayComponent implements OnInit {
 				content = "";
 				content += transcript;
 				console.log(content);
+				content = content.toLowerCase();
+				content = content.split('.').join("");
+				content = content.split(' ').join("-");
+				this.ingesprokenProduct = content;
+				this.cdRef.detectChanges();
 				this.ingesprokenProduct = content;
 
 				var synth = window.speechSynthesis;
