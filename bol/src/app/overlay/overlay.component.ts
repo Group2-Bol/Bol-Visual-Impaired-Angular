@@ -194,6 +194,7 @@ export class OverlayComponent implements OnInit {
 			imageDesc.style.marginBottom = '50px';
 			imageDesc.style.bottom = '0';
 			imageDesc.style.position = 'absolute';
+			imageDesc.style.color = 'white';
 
 			imageDesc.innerHTML += `<b>${jsonImages["images"][label][i]["nameProduct"]}</b>`;
 
@@ -207,6 +208,7 @@ export class OverlayComponent implements OnInit {
 			priceDiv.style.color = 'red';
 			priceDiv.style.bottom = '0';
 			priceDiv.style.position = 'absolute';
+			priceDiv.style.color = 'yellow';
 
 			priceDiv.innerHTML += `<b>${jsonImages["images"][label][i]["Prijs"]}</b>`
 
